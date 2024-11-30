@@ -1,34 +1,89 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Live2D 看板娘 / Demo</title>
-<style>
-#github svg {
-	transition: all 1s;
-	fill: #222;
-	color: #fff;
-	position: absolute;
-	top: 0;
-	right: 0;
-	border: 0;
-	width: 80px;
-	height: 80px;
-}
-#github:hover svg {
-	width: 160px;
-	height: 160px;
-}
-</style>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>　</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qweather-icons@1.1.1/font/qweather-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+	<script src="js/cookie.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/calendar.js"></script>
+	<script src="js/autoload.js"></script>
 </head>
-<body>
-<a id="github" href="https://github.com/ChinaChiao/live2d-widget" target="_blank" title="Visit the open-source code on GitHub!">
-	<svg viewBox="0 0 250 250" aria-hidden="true">
-		<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-		<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" class="octo-arm"></path>
-		<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
-	</svg>
-</a>
-<script src="../autoload.js"></script>
+
+<body scroll="no">
+<div class="page">
+	<div id="log_container"></div>
+	<div id="settings_dialog">
+		<div id="settings_backdrop" class="backdrop_black">
+		</div>
+		<div id="settings_card" class="light settings_card ">
+			<div class="settings_header">
+				<span>设置</span>
+				<button id="save_button" class="button">
+					<span class="iconfont" id="settings_save_icon">&#xe606;                </span>
+					保存
+				</button>
+			</div>
+
+			<div class="settings_content">
+				<span> 天气API KEY: </span>
+				<input id="qweather_input" class="settings_input" type="text">
+				<div class="qr_tips">扫描二维码, 参照文档创建免费应用及 Web API, 并将 Key 填入上方输入框中</div>
+				<img class="qr-code" src="./css/images/qweather_get_key.png" alt="qweather_get_key">
+			</div>
+
+		</div>
+	</div>
+	<span class="iconfont" id="light_dark_icon">&#xe8e3</span>
+	<span class="iconfont" id="settings_icon">&#xe78e;</span>
+
+	<div id="top">
+		<div class="nonetop_container">
+		</div>
+		<div class="hitokoto_container">
+			<div class="hitokoto_main">
+				<div id="brackets-l"></div>
+				<div id="hitokoto"></div>
+				<div id="brackets-r"></div>
+			</div>
+			<div id="from"></div>
+		</div>
+		<div class="poem_container">
+			<div id="poem_sentence"></div>
+			<div id="poem_info"></div>
+		</div>
+	</div>
+
+	<div id="middle">
+		<div id="time_container">
+			<div id="apmOuterWrapper">
+				<div id="apmInnerWrapper">
+					<div id="apm"></div>
+				</div>
+			</div>
+			<div class="time" id="time"></div>
+			<div class="date" id="date">时钟加载中...</div>
+			<div><span class="lunar" id="lunar"></span><span class="holiday" id="holiday"></span></div>
+		</div>
+	</div>
+
+	<div id="bottom">
+		<div class="nonebtm_container"></div>
+		<div class="weather_container">
+			<div id="weaTitle">天气加载中...</div>
+			<div class="weaWrapper">
+				<div id="weaImg"></div>
+				<div id="weaTemp"></div>
+				<div id="weaInfo"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <script src="js/debug.js"></script> -->
 </body>
+
 </html>
