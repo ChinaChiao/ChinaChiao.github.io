@@ -62,7 +62,7 @@ window.onload = function () {
 // Keys
 var KEY_UNSPLASH = "bXwWoUhPeVw-yvSesGMgaOENnlSzhHYB43kZIQOR8cQ";
 var DEFAULT_QWEATHER_KEY = "c08a407ae4974b51b285e7aa8c8227f1";
-var KEY_QWEATHER = getCookie("qweatherKey") || DEFAULT_QWEATHER_KEY;
+var KEY_QWEATHER = DEFAULT_QWEATHER_KEY || getCookie("qweatherKey");
 
 // APIs
 var API_HITOKOTO = "https://v1.hitokoto.cn?encode=json&charset=utf-8";
