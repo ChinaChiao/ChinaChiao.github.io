@@ -1,4 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { ExperimentBench } from '../components/ExperimentBench'
 import { getExperiment } from '../data/experiments'
 import { usePageTitle } from '../hooks/usePageTitle'
 
@@ -47,6 +48,7 @@ export function ExperimentDetail() {
               <p>{item.methodNote}</p>
             </section>
           </div>
+          <ExperimentBench experiment={item} />
           <p className="article__back">
             <Link to="/experiments">← 返回实验档案</Link>
           </p>

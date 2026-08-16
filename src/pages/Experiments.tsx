@@ -14,7 +14,7 @@ export function Experiments() {
           <h1 className="subhero__title">实验档案</h1>
           <p className="subhero__en">Four fields. One way of watching.</p>
           <p className="section-lead">
-            每个实验都来自生活里的具体摩擦。AI Companion 是观察案例之一，不是身份的全部。
+            每个实验都来自生活里的具体摩擦。点开一份档案，里面有一个可把玩的现场——不是展览标签，是把规则按下去。AI Companion 是观察案例之一，不是身份的全部。
           </p>
         </div>
       </header>

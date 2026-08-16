@@ -28,6 +28,8 @@ export type Note = {
   body: NoteBlock[]
 }
 
+export type ExperimentDemo = 'companion' | 'datalens' | 'play' | 'media'
+
 export type Experiment = {
   slug: string
   code: string
@@ -39,6 +41,8 @@ export type Experiment = {
   year: string
   observations: string[]
   methodNote: string
+  insight: string
+  demo: ExperimentDemo
 }
 
 export type TimelineStage = {

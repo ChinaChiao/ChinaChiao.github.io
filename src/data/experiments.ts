@@ -18,6 +18,9 @@ export const experiments: Experiment[] = [
     ],
     methodNote:
       '用生活里的陪伴需求做小实验，而不是先画一个超级 Agent 蓝图。安全与边界作为默认工程约束进入每次迭代。',
+    insight:
+      '陪伴的核心不是更长的回答，而是在对的时刻递上一句记得住的话。',
+    demo: 'companion',
   },
   {
     slug: 'ai-data-lens',
@@ -36,6 +39,8 @@ export const experiments: Experiment[] = [
     ],
     methodNote:
       '先找一份自己真正要做决定的数据，再做透镜。网络安全训练在这里变成对来源、权限与误导的警惕。',
+    insight: '透镜的工作不是自动出图，而是让结论还能被追问。',
+    demo: 'datalens',
   },
   {
     slug: 'play-systems',
@@ -54,6 +59,8 @@ export const experiments: Experiment[] = [
     ],
     methodNote:
       '每次做产品反馈，先问：用户此刻能不能像玩家一样知道“我做对了还是做错了”。',
+    insight: '反馈如果不能立刻被读懂，规则就不存在。',
+    demo: 'play',
   },
   {
     slug: 'media-loop',
@@ -72,6 +79,8 @@ export const experiments: Experiment[] = [
     ],
     methodNote:
       '用内容验证一句主张是否站得住，再用产品验证这句主张在真实流程里是否还成立。',
+    insight: '走完一圈才算产品。只有钩子，只是开头。',
+    demo: 'media',
   },
 ]
 

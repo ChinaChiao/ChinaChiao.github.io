@@ -14,7 +14,7 @@ export function Archive() {
               四个现场，一种观察方式。
             </h2>
             <p className="section-lead">
-              AI 伴侣只是其中一个案例。数据、游戏与传播共同构成视角。网络安全不单独陈列，它作为工程底座写在方法里。
+              AI 伴侣只是其中一个案例。数据、游戏与传播共同构成视角。点进档案，里面有一个可把玩的现场。网络安全不单独陈列，它作为工程底座写在方法里。
             </p>
             <Link className="text-link" to="/experiments">
               打开完整档案

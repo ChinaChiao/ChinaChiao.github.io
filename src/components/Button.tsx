@@ -20,7 +20,8 @@ export function Button({
   className,
   onClick,
 }: Props) {
-  const cls = `btn btn--${variant} ${className ?? ''}`
+  const press = variant === 'primary' ? 'press press--accent' : 'press'
+  const cls = `btn btn--${variant} ${press} ${className ?? ''}`.trim()
 
   if (to) {
     return (
