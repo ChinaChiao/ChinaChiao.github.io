@@ -1,8 +1,13 @@
-import { Link } from 'react-router-dom'
-import { site, visibleContacts } from '../data/site'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { useSiteCopy, useT } from '../i18n/useLocale'
+import { visibleContacts } from '../data/site'
+import { LocaleLink } from './LocaleLink'
 
 export function Footer() {
-  const contacts = visibleContacts(site.contact)
+  const t = useT()
+  const siteCopy = useSiteCopy()
+  const contacts = visibleContacts(siteCopy.contact)
+  const reduced = usePrefersReducedMotion()
 
   return (
     <footer className="site-footer">
@@ -11,14 +16,14 @@ export function Footer() {
       >
         <div>
           <p className="site-footer__brand">
-            {site.nameZh} / {site.nameEn}
+            {siteCopy.nameZh} / {siteCopy.nameEn}
           </p>
-          <p className="site-footer__role">{site.role}</p>
+          <p className="site-footer__role">{siteCopy.role}</p>
         </div>
-        <nav aria-label="页脚导航">
-          <Link to="/notes">产品笔记</Link>
-          <Link to="/experiments">实验档案</Link>
-          <Link to="/about">方法与关于</Link>
+        <nav aria-label={t.footerNav}>
+          <LocaleLink to="/notes">{t.footerNotes}</LocaleLink>
+          <LocaleLink to="/experiments">{t.footerLabs}</LocaleLink>
+          <LocaleLink to="/about">{t.footerAbout}</LocaleLink>
         </nav>
         {contacts.length > 0 ? (
           <div className="site-footer__contact">
@@ -29,11 +34,25 @@ export function Footer() {
             ))}
           </div>
         ) : null}
-        <p className="site-footer__colophon">
-          Constructivist field notes. Cybersecurity as the engineering base.
-          <br />
-          © {site.year} {site.nameEn}
-        </p>
+        <div className="site-footer__colophon-row">
+          <p className="site-footer__colophon">
+            {t.footerColophon}
+            <br />
+            © {siteCopy.year} {siteCopy.nameEn}
+          </p>
+          <button
+            type="button"
+            className="press top-link"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: reduced ? 'auto' : 'smooth',
+              })
+            }
+          >
+            {t.top}
+          </button>
+        </div>
       </div>
     </footer>
   )

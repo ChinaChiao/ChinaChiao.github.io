@@ -1,19 +1,21 @@
 import { Button } from '../components/Button'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useT } from '../i18n/useLocale'
 
 export function NotFound() {
-  usePageTitle('未找到 — 场域 FIELD')
+  const t = useT()
+  usePageTitle(t.docMissing)
 
   return (
     <main id="main" className="subpage not-found">
       <div className="shell">
         <p className="not-found__num">404</p>
-        <h1>这一页不在档案里。</h1>
-        <p>回到场域，从笔记或实验继续。 </p>
+        <h1>{t.notFoundTitle}</h1>
+        <p>{t.notFoundBody}</p>
         <div className="hero__actions">
-          <Button to="/">返回首页</Button>
+          <Button to="/">{t.notFoundHome}</Button>
           <Button to="/notes" variant="secondary">
-            阅读产品笔记
+            {t.heroCtaNotes}
           </Button>
         </div>
       </div>

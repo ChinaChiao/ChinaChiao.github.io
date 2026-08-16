@@ -1,23 +1,24 @@
-import { Link } from 'react-router-dom'
-import { featuredNotes } from '../../data/notes'
+import { useFeaturedNotes, useT } from '../../i18n/useLocale'
+import { LocaleLink } from '../LocaleLink'
 import { NoteCard } from '../NoteCard'
 import { SectionKicker } from '../Marks'
 
 export function FeaturedNotes() {
-  const { pinned, latest } = featuredNotes()
+  const t = useT()
+  const { pinned, latest } = useFeaturedNotes()
 
   return (
     <section className="featured" id="notes" aria-labelledby="notes-title">
       <div className="shell">
         <div className="featured__head">
-          <SectionKicker index="03" label="精选产品笔记" />
+          <SectionKicker index="03" label={t.notesKicker} />
           <div>
             <h2 id="notes-title" className="section-title">
-              先读主张，再看实验。
+              {t.notesTitle}
             </h2>
-            <Link className="text-link" to="/notes">
-              进入笔记索引
-            </Link>
+            <LocaleLink className="text-link" to="/notes">
+              {t.notesIndex}
+            </LocaleLink>
           </div>
         </div>
         <div className="featured__grid">

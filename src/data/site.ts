@@ -3,7 +3,7 @@ import type { Contact, Education, SignalItem } from '../types'
 export const site = {
   nameZh: '场域',
   nameEn: 'FIELD',
-  issue: 'ISSUE 01',
+  issue: 'ISSUE 03',
   year: '2026',
   role: 'AI-native Product Builder',
   educationShort: 'NTU Cybersecurity',

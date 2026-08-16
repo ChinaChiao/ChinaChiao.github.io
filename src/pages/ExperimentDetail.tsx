@@ -1,14 +1,18 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { ExperimentBench } from '../components/ExperimentBench'
-import { getExperiment } from '../data/experiments'
+import { LocaleLink } from '../components/LocaleLink'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { withLocale } from '../i18n/locale'
+import { useExperiment, useLocale, useT } from '../i18n/useLocale'
 
 export function ExperimentDetail() {
   const { slug } = useParams()
-  const item = slug ? getExperiment(slug) : undefined
-  usePageTitle(item ? `${item.title} — 场域 FIELD` : '场域 FIELD')
+  const locale = useLocale()
+  const t = useT()
+  const item = useExperiment(slug)
+  usePageTitle(item ? `${item.title} — ${t.docBrand}` : t.docHome)
 
-  if (!item) return <Navigate to="/experiments" replace />
+  if (!item) return <Navigate to={withLocale('/experiments', locale)} replace />
 
   return (
     <main id="main" className="subpage">
@@ -16,7 +20,7 @@ export function ExperimentDetail() {
         <header className="subhero">
           <div className="shell">
             <p className="article__kicker">
-              <Link to="/experiments">实验档案</Link>
+              <LocaleLink to="/experiments">{t.archiveKicker}</LocaleLink>
               <span aria-hidden="true"> / </span>
               {item.code}
             </p>
@@ -33,7 +37,7 @@ export function ExperimentDetail() {
         <div className="shell exp-detail__wrap">
           <div className="exp-detail__body">
             <section>
-              <h2>现场观察</h2>
+              <h2>{t.expObserve}</h2>
               <ol className="exp-detail__obs">
                 {item.observations.map((line, i) => (
                   <li key={line}>
@@ -44,13 +48,13 @@ export function ExperimentDetail() {
               </ol>
             </section>
             <section className="exp-detail__method">
-              <h2>方法备注</h2>
+              <h2>{t.expMethod}</h2>
               <p>{item.methodNote}</p>
             </section>
           </div>
           <ExperimentBench experiment={item} />
           <p className="article__back">
-            <Link to="/experiments">← 返回实验档案</Link>
+            <LocaleLink to="/experiments">{t.expBack}</LocaleLink>
           </p>
         </div>
       </article>

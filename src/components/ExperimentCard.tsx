@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import type { Experiment } from '../types'
+import { LocaleLink } from './LocaleLink'
 
 type Props = {
   experiment: Experiment
@@ -8,7 +8,7 @@ type Props = {
 
 export function ExperimentCard({ experiment, index }: Props) {
   return (
-    <Link
+    <LocaleLink
       className={`exp-card exp-card--${index + 1}`}
       to={`/experiments/${experiment.slug}`}
     >
@@ -24,6 +24,6 @@ export function ExperimentCard({ experiment, index }: Props) {
         <span>{experiment.year}</span>
       </div>
       <span className="exp-card__mark" aria-hidden="true" />
-    </Link>
+    </LocaleLink>
   )
 }

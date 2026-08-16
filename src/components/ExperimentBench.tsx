@@ -1,22 +1,11 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { lensQueriesEn, mediaNotesEn, mediaStepsEn } from '../i18n/enContent'
+import { useLocale, useT } from '../i18n/useLocale'
 import { playTick } from '../lib/tone'
-import type { Experiment, ExperimentDemo } from '../types'
+import type { Experiment } from '../types'
 
-const prompts: Record<ExperimentDemo, string> = {
-  companion: '说一句今天卡住的事。',
-  datalens: '选一个问题，看证据怎么排。',
-  play: '按下去。反馈应该立刻到。',
-  media: '走完一圈：钩子、反馈、原型。',
-}
-
-const companionReplies = [
-  '先记下这个摩擦。下一步不是更大的模型，是让它在对的时刻出现。',
-  '如果这句话要被记住一周，它得短，而且得跟你今天做过的事有关。',
-  '角色感来自节奏，不来自更长的自我介绍。',
-]
-
-const lensQueries = [
+const lensQueriesZh = [
   {
     id: 'open',
     label: '哪些现场被打开最多',
@@ -51,13 +40,13 @@ const lensQueries = [
   },
 ]
 
-const mediaSteps = [
+const mediaStepsZh = [
   { id: 'hook', title: '钩子', body: '三秒里把摩擦说清楚。' },
   { id: 'echo', title: '反馈', body: '看谁被戳到，记下原话。' },
   { id: 'make', title: '原型', body: '把那句原话做成可按的一步。' },
 ]
 
-const mediaNotes = [
+const mediaNotesZh = [
   '这一圈值是因为反馈改了形状，不是因为曝光数字变大。',
   '钩子如果不能变成下一步，就只是开头。',
   '循环成立：表达带来使用，使用修正表达。',
@@ -68,42 +57,40 @@ type BenchProps = {
 }
 
 export function ExperimentBench({ experiment }: BenchProps) {
+  const locale = useLocale()
+  const t = useT()
   const reduced = usePrefersReducedMotion()
 
   return (
     <section className="bench" aria-labelledby="bench-title">
       <header className="bench__head">
         <div>
-          <p className="bench__kicker">现场 / Live bench</p>
+          <p className="bench__kicker">{t.benchKicker}</p>
           <h2 id="bench-title" className="bench__title">
-            可把玩的现场
+            {t.benchTitle}
           </h2>
         </div>
-        <p className="bench__meta">
-          {reduced ? '已按系统偏好关闭声响与位移' : '按下去会有一声轻响'}
-        </p>
+        <p className="bench__meta">{reduced ? t.benchSoundOff : t.benchSoundOn}</p>
       </header>
-      <p className="bench__prompt">{prompts[experiment.demo]}</p>
+      <p className="bench__prompt">{t.benchPrompt[experiment.demo]}</p>
       <blockquote className="bench__insight">{experiment.insight}</blockquote>
       <div className="bench__stage">
-        {experiment.demo === 'companion' ? <CompanionBench /> : null}
-        {experiment.demo === 'datalens' ? <DataLensBench /> : null}
+        {experiment.demo === 'companion' ? <CompanionBench key={locale} /> : null}
+        {experiment.demo === 'datalens' ? <DataLensBench key={locale} /> : null}
         {experiment.demo === 'play' ? <PlayBench /> : null}
-        {experiment.demo === 'media' ? <MediaBench /> : null}
+        {experiment.demo === 'media' ? <MediaBench key={locale} /> : null}
       </div>
     </section>
   )
 }
 
 function CompanionBench() {
+  const t = useT()
   const inputId = useId()
   const logRef = useRef<HTMLDivElement>(null)
   const [input, setInput] = useState('')
   const [log, setLog] = useState<{ role: 'site' | 'you'; text: string }[]>([
-    {
-      role: 'site',
-      text: '在。今天想被记住哪一件小事？',
-    },
+    { role: 'site', text: t.benchChatInitial },
   ])
 
   useEffect(() => {
@@ -116,8 +103,7 @@ function CompanionBench() {
     if (!text) return
 
     playTick(600, 'triangle', 0.045)
-    const reply =
-      companionReplies[Math.floor(Math.random() * companionReplies.length)]
+    const reply = t.benchReplies[Math.floor(Math.random() * t.benchReplies.length)]
 
     setInput('')
     const next: { role: 'site' | 'you'; text: string }[] = [
@@ -136,30 +122,30 @@ function CompanionBench() {
         role="log"
         aria-live="polite"
         aria-relevant="additions"
-        aria-label="伴侣对话"
+        aria-label={t.benchChatLabel}
       >
         {log.map((entry, index) => (
           <p
             key={`${entry.role}-${index}`}
             className={`bench-msg bench-msg--${entry.role}`}
           >
-            <span>{entry.role === 'you' ? '你' : '现场'}</span>
+            <span>{entry.role === 'you' ? t.benchYou : t.benchSite}</span>
             {entry.text}
           </p>
         ))}
       </div>
       <form className="bench-form" onSubmit={send}>
         <label className="visually-hidden" htmlFor={inputId}>
-          对伴侣说一句
+          {t.benchChatField}
         </label>
         <input
           id={inputId}
           value={input}
           onChange={(event) => setInput(event.target.value)}
-          placeholder="例如：晚上不想再解释一遍今天做了什么"
+          placeholder={t.benchChatPlaceholder}
         />
         <button className="press" type="submit">
-          发送
+          {t.benchSend}
         </button>
       </form>
     </div>
@@ -167,10 +153,13 @@ function CompanionBench() {
 }
 
 function DataLensBench() {
+  const locale = useLocale()
+  const t = useT()
   const reduced = usePrefersReducedMotion()
-  const [activeId, setActiveId] = useState(lensQueries[0].id)
+  const queries = locale === 'en' ? lensQueriesEn : lensQueriesZh
+  const [activeId, setActiveId] = useState(queries[0].id)
   const [pending, setPending] = useState(false)
-  const active = lensQueries.find((item) => item.id === activeId) ?? lensQueries[0]
+  const active = queries.find((item) => item.id === activeId) ?? queries[0]
   const max = Math.max(...active.bars.map((bar) => bar.value))
 
   const run = (id: string) => {
@@ -186,8 +175,8 @@ function DataLensBench() {
 
   return (
     <div className="bench-lens">
-      <div className="bench-chips" role="group" aria-label="选择一个问题">
-        {lensQueries.map((item) => (
+      <div className="bench-chips" role="group" aria-label={t.benchLensGroup}>
+        {queries.map((item) => (
           <button
             key={item.id}
             type="button"
@@ -200,7 +189,7 @@ function DataLensBench() {
         ))}
       </div>
       <div className="bench-evidence" aria-live="polite" aria-busy={pending}>
-        <p className="bench-kicker">证据路径</p>
+        <p className="bench-kicker">{t.benchLensPath}</p>
         <ul className={`bench-bars${pending ? ' is-pending' : ''}`}>
           {active.bars.map((bar) => (
             <li key={bar.name}>
@@ -220,6 +209,7 @@ function DataLensBench() {
 }
 
 function PlayBench() {
+  const t = useT()
   const [score, setScore] = useState(0)
   const [combo, setCombo] = useState(0)
   const timer = useRef<number>(0)
@@ -240,27 +230,33 @@ function PlayBench() {
     <div className="bench-play">
       <p className="bench-score" aria-live="polite" aria-atomic="true">
         <span className="bench-score__num">{score}</span>
-        <span className="bench-score__combo">连击 {combo || '—'}</span>
+        <span className="bench-score__combo">
+          {t.benchPlayCombo} {combo || '—'}
+        </span>
       </p>
       <button className="press press--accent bench-pulse" type="button" onClick={hit}>
-        按下去
+        {t.benchPlayHit}
       </button>
-      <p className="bench-note">规则稳定，反馈诚实。松手后连击会掉。</p>
+      <p className="bench-note">{t.benchPlayNote}</p>
     </div>
   )
 }
 
 function MediaBench() {
+  const locale = useLocale()
+  const t = useT()
+  const steps = locale === 'en' ? mediaStepsEn : mediaStepsZh
+  const notes = locale === 'en' ? mediaNotesEn : mediaNotesZh
   const [step, setStep] = useState(0)
   const [cycles, setCycles] = useState(0)
-  const [note, setNote] = useState(mediaNotes[0])
+  const [note, setNote] = useState(notes[0])
 
   const advance = () => {
     playTick(step === 2 ? 640 : 500, 'sine', 0.045)
     if (step === 2) {
       const next = cycles + 1
       setCycles(next)
-      setNote(mediaNotes[next % mediaNotes.length])
+      setNote(notes[next % notes.length])
       setStep(0)
       return
     }
@@ -270,7 +266,7 @@ function MediaBench() {
   return (
     <div className="bench-media">
       <ol className="bench-steps">
-        {mediaSteps.map((item, index) => (
+        {steps.map((item, index) => (
           <li
             key={item.id}
             className={index === step ? 'is-on' : ''}
@@ -284,10 +280,11 @@ function MediaBench() {
       </ol>
       <div className="bench-media__foot">
         <button className="press" type="button" onClick={advance}>
-          走一拍
+          {t.benchMediaGo}
         </button>
         <p className="bench-note" aria-live="polite">
-          已走完 {cycles} 圈。{note}
+          {t.benchMediaCycles(cycles)}
+          {note}
         </p>
       </div>
     </div>

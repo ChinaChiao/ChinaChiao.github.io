@@ -1,48 +1,56 @@
-import { site, visibleContacts } from '../../data/site'
+import { visibleContacts } from '../../data/site'
+import { useLocale, useSiteCopy, useT } from '../../i18n/useLocale'
 import { SectionKicker } from '../Marks'
 
 export function Signals() {
-  const contacts = visibleContacts(site.contact)
+  const locale = useLocale()
+  const t = useT()
+  const siteCopy = useSiteCopy()
+  const contacts = visibleContacts(siteCopy.contact)
 
   return (
     <section className="signals" id="signals" aria-labelledby="signals-title">
       <div className="shell">
-        <SectionKicker index="06" label="个人信号与联系" />
+        <SectionKicker index="06" label={t.signalsKicker} />
         <div className="signals__grid">
           <div>
             <h2 id="signals-title" className="section-title">
-              编辑式索引，而不是简历堆叠。
+              {t.signalsTitle}
             </h2>
-            <p className="section-lead">{site.thesis}</p>
+            <p className="section-lead">{siteCopy.thesis}</p>
           </div>
           <dl className="index-list">
-            {site.education.map((item) => (
+            {siteCopy.education.map((item) => (
               <div key={item.schoolEn} className="index-list__row">
-                <dt>Education</dt>
+                <dt>{t.signalsEducation}</dt>
                 <dd>
-                  <strong>{item.school}</strong>
+                  <strong>{locale === 'en' ? item.schoolEn : item.school}</strong>
                   <span>
-                    {item.program} / {item.programEn}
+                    {locale === 'en'
+                      ? `${item.programEn} / ${item.program}`
+                      : `${item.program} / ${item.programEn}`}
                   </span>
-                  <span className="index-list__en">{item.schoolEn}</span>
+                  <span className="index-list__en">
+                    {locale === 'en' ? item.school : item.schoolEn}
+                  </span>
                 </dd>
               </div>
             ))}
             <div className="index-list__row">
-              <dt>Now watching</dt>
+              <dt>{t.signalsWatching}</dt>
               <dd>
                 <ul>
-                  {site.focus.map((item) => (
+                  {siteCopy.focus.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </dd>
             </div>
             <div className="index-list__row">
-              <dt>Cross field</dt>
+              <dt>{t.signalsCross}</dt>
               <dd>
                 <ul>
-                  {site.domains.map((item) => (
+                  {siteCopy.domains.map((item) => (
                     <li key={item.name}>
                       <strong>{item.name}</strong>
                       <span> — {item.note}</span>
@@ -53,7 +61,7 @@ export function Signals() {
             </div>
             {contacts.length > 0 ? (
               <div className="index-list__row">
-                <dt>Contact</dt>
+                <dt>{t.signalsContact}</dt>
                 <dd className="index-list__contact">
                   {contacts.map((item) => (
                     <a key={item.key} href={item.href}>

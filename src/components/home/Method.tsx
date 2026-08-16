@@ -1,16 +1,19 @@
-import { method } from '../../data/method'
+import { useMethod, useT } from '../../i18n/useLocale'
 import { SectionKicker } from '../Marks'
 
 export function Method() {
+  const t = useT()
+  const list = useMethod()
+
   return (
     <section className="method" id="method" aria-labelledby="method-title">
       <div className="shell">
-        <SectionKicker index="05" label="产品方法" />
+        <SectionKicker index="05" label={t.methodKicker} />
         <h2 id="method-title" className="section-title">
-          方法是立场，不是流程海报。
+          {t.methodTitle}
         </h2>
         <ol className="method__list">
-          {method.map((item) => (
+          {list.map((item) => (
             <li key={item.index} className="method__item">
               <span className="method__num">{item.index}</span>
               <div>

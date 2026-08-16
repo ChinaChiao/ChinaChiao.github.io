@@ -15,6 +15,15 @@ export default function App() {
     <BrowserRouter basename={basename}>
       <Routes>
         <Route element={<Layout />}>
+          <Route path="en">
+            <Route index element={<Home />} />
+            <Route path="notes" element={<Notes />} />
+            <Route path="notes/:slug" element={<NoteDetail />} />
+            <Route path="experiments" element={<Experiments />} />
+            <Route path="experiments/:slug" element={<ExperimentDetail />} />
+            <Route path="about" element={<About />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
           <Route index element={<Home />} />
           <Route path="notes" element={<Notes />} />
           <Route path="notes/:slug" element={<NoteDetail />} />

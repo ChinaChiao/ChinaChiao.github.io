@@ -1,7 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
-import { formatDate, getNote } from '../data/notes'
+import { Navigate, useParams } from 'react-router-dom'
+import { formatDate } from '../data/notes'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { withLocale } from '../i18n/locale'
+import { useLocale, useNote, useT } from '../i18n/useLocale'
 import type { NoteBlock } from '../types'
+import { LocaleLink } from '../components/LocaleLink'
 
 function Block({ block }: { block: NoteBlock }) {
   if (block.type === 'h') return <h2>{block.text}</h2>
@@ -20,10 +23,12 @@ function Block({ block }: { block: NoteBlock }) {
 
 export function NoteDetail() {
   const { slug } = useParams()
-  const note = slug ? getNote(slug) : undefined
-  usePageTitle(note ? `${note.title} — 场域 FIELD` : '场域 FIELD')
+  const locale = useLocale()
+  const t = useT()
+  const note = useNote(slug)
+  usePageTitle(note ? `${note.title} — ${t.docBrand}` : t.docHome)
 
-  if (!note) return <Navigate to="/notes" replace />
+  if (!note) return <Navigate to={withLocale('/notes', locale)} replace />
 
   return (
     <main id="main" className="subpage">
@@ -31,7 +36,7 @@ export function NoteDetail() {
         <header className="article__header">
           <div className="shell article__header-inner">
             <p className="article__kicker">
-              <Link to="/notes">产品笔记</Link>
+              <LocaleLink to="/notes">{t.notesPageTitle}</LocaleLink>
               <span aria-hidden="true"> / </span>
               {note.theme}
             </p>
@@ -40,7 +45,7 @@ export function NoteDetail() {
             <div className="article__meta">
               <time dateTime={note.date}>{formatDate(note.date)}</time>
               <span>{note.minutes} min read</span>
-              {note.pinned ? <span className="stamp stamp--red">置顶</span> : null}
+              {note.pinned ? <span className="stamp stamp--red">{t.notesPinned}</span> : null}
             </div>
           </div>
         </header>
@@ -50,7 +55,7 @@ export function NoteDetail() {
             <Block key={i} block={block} />
           ))}
           <p className="article__back">
-            <Link to="/notes">← 返回笔记索引</Link>
+            <LocaleLink to="/notes">{t.notesBack}</LocaleLink>
           </p>
         </div>
       </article>

@@ -1,8 +1,14 @@
+import { useLocale, useSiteCopy, useT } from '../../i18n/useLocale'
 import { Button } from '../Button'
 import { CropMarks, Proun } from '../Marks'
-import { site } from '../../data/site'
 
 export function Hero() {
+  const locale = useLocale()
+  const t = useT()
+  const siteCopy = useSiteCopy()
+  const primary = locale === 'en' ? siteCopy.heroEn : siteCopy.heroZh
+  const secondary = locale === 'en' ? siteCopy.heroZh : siteCopy.heroEn
+
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero__board" aria-hidden="true" />
@@ -10,21 +16,24 @@ export function Hero() {
       <div className="shell hero__layout">
         <div className="hero__copy">
           <div className="hero__tags">
-            <span className="stamp">{site.role}</span>
-            <span className="stamp">{site.educationShort}</span>
+            <span className="stamp">{siteCopy.role}</span>
+            <span className="stamp">{siteCopy.educationShort}</span>
           </div>
           <p className="hero__issue">
-            {site.issue} · EVERYDAY EXPERIMENTS · SINCE 2024
+            {siteCopy.issue} · EVERYDAY EXPERIMENTS · SINCE 2024
           </p>
-          <h1 id="hero-title" className="hero__zh">
-            {site.heroZh}
+          <h1
+            id="hero-title"
+            className={locale === 'en' ? 'hero__zh hero__zh--en' : 'hero__zh'}
+          >
+            {primary}
           </h1>
-          <p className="hero__en">{site.heroEn}</p>
-          <p className="hero__intro">{site.intro}</p>
+          <p className="hero__en">{secondary}</p>
+          <p className="hero__intro">{siteCopy.intro}</p>
           <div className="hero__actions">
-            <Button to="/notes">阅读产品笔记</Button>
+            <Button to="/notes">{t.heroCtaNotes}</Button>
             <Button to="/experiments" variant="secondary">
-              查看实验档案
+              {t.heroCtaLabs}
             </Button>
           </div>
         </div>

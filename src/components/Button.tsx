@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import type { ReactNode } from 'react'
+import { LocaleLink } from './LocaleLink'
 
 type Variant = 'primary' | 'secondary' | 'ghost'
 
@@ -25,9 +25,9 @@ export function Button({
 
   if (to) {
     return (
-      <Link className={cls} to={to} onClick={onClick}>
+      <LocaleLink className={cls} to={to} onClick={onClick}>
         {children}
-      </Link>
+      </LocaleLink>
     )
   }
 

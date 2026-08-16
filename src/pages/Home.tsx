@@ -5,9 +5,11 @@ import { Method } from '../components/home/Method'
 import { Observation } from '../components/home/Observation'
 import { Signals } from '../components/home/Signals'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useT } from '../i18n/useLocale'
 
 export function Home() {
-  usePageTitle('场域 FIELD — AI-native Product Builder')
+  const t = useT()
+  usePageTitle(t.docHome)
 
   return (
     <main id="main">

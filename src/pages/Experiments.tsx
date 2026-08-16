@@ -1,25 +1,25 @@
 import { ExperimentCard } from '../components/ExperimentCard'
 import { SectionKicker } from '../components/Marks'
-import { experiments } from '../data/experiments'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useExperiments, useT } from '../i18n/useLocale'
 
 export function Experiments() {
-  usePageTitle('实验档案 — 场域 FIELD')
+  const t = useT()
+  usePageTitle(t.docLabs)
+  const list = useExperiments()
 
   return (
     <main id="main" className="subpage">
       <header className="subhero">
         <div className="shell">
           <SectionKicker index="03" label="Archive" />
-          <h1 className="subhero__title">实验档案</h1>
-          <p className="subhero__en">Four fields. One way of watching.</p>
-          <p className="section-lead">
-            每个实验都来自生活里的具体摩擦。点开一份档案，里面有一个可把玩的现场——不是展览标签，是把规则按下去。AI Companion 是观察案例之一，不是身份的全部。
-          </p>
+          <h1 className="subhero__title">{t.archiveKicker}</h1>
+          <p className="subhero__en">{t.archivePageEn}</p>
+          <p className="section-lead">{t.archivePageLead}</p>
         </div>
       </header>
       <section className="shell archive__grid archive__grid--page">
-        {experiments.map((item, index) => (
+        {list.map((item, index) => (
           <ExperimentCard key={item.slug} experiment={item} index={index} />
         ))}
       </section>

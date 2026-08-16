@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { LocaleProvider } from '../i18n/LocaleProvider'
 import { Footer } from './Footer'
 import { Nav } from './Nav'
 
@@ -11,10 +12,12 @@ export function Layout() {
   }, [pathname])
 
   return (
-    <div className="page">
-      <Nav />
-      <Outlet />
-      <Footer />
-    </div>
+    <LocaleProvider>
+      <div className="page">
+        <Nav />
+        <Outlet />
+        <Footer />
+      </div>
+    </LocaleProvider>
   )
 }

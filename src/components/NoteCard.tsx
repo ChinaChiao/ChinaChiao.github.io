@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { formatDate } from '../data/notes'
+import { useT } from '../i18n/useLocale'
 import type { Note } from '../types'
+import { LocaleLink } from './LocaleLink'
 
 type Props = {
   note: Note
@@ -8,10 +9,12 @@ type Props = {
 }
 
 export function NoteCard({ note, layout = 'stack' }: Props) {
+  const t = useT()
+
   return (
     <article className={`note-card note-card--${layout}`}>
       <div className="note-card__meta">
-        {note.pinned ? <span className="stamp stamp--red">置顶</span> : null}
+        {note.pinned ? <span className="stamp stamp--red">{t.notesPinned}</span> : null}
         <span className="note-card__theme">{note.theme}</span>
         <span className="note-card__dot" aria-hidden="true" />
         <time dateTime={note.date}>{formatDate(note.date)}</time>
@@ -19,13 +22,13 @@ export function NoteCard({ note, layout = 'stack' }: Props) {
         <span>{note.minutes} min</span>
       </div>
       <h3 className="note-card__title">
-        <Link to={`/notes/${note.slug}`}>{note.title}</Link>
+        <LocaleLink to={`/notes/${note.slug}`}>{note.title}</LocaleLink>
       </h3>
       <p className="note-card__q">{note.question}</p>
       {layout === 'feature' ? <p className="note-card__lede">{note.lede}</p> : null}
-      <Link className="note-card__go" to={`/notes/${note.slug}`}>
-        阅读 <span aria-hidden="true">→</span>
-      </Link>
+      <LocaleLink className="note-card__go" to={`/notes/${note.slug}`}>
+        {t.notesRead} <span aria-hidden="true">→</span>
+      </LocaleLink>
     </article>
   )
 }
