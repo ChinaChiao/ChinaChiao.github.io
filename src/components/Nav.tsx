@@ -113,6 +113,18 @@ export function Nav() {
         </button>
       </div>
 
+      {open ? (
+        <button
+          type="button"
+          className="site-index__veil"
+          aria-label={t.indexClose}
+          onClick={() => {
+            setOpen(false)
+            toggleRef.current?.focus()
+          }}
+        />
+      ) : null}
+
       <div
         ref={indexRef}
         id="site-index"
@@ -126,10 +138,12 @@ export function Nav() {
               <li key={link.to}>
                 <LocaleNavLink to={link.to} end={link.to === '/'}>
                   <span className="site-index__num">{link.index}</span>
-                  <span className="site-index__zh">{t.nav[link.key]}</span>
-                  {locale === 'zh' ? (
-                    <span className="site-index__en">{t.navEn[link.key]}</span>
-                  ) : null}
+                  <span className="site-index__label">
+                    <span className="site-index__zh">{t.nav[link.key]}</span>
+                    {locale === 'zh' ? (
+                      <span className="site-index__en">{t.navEn[link.key]}</span>
+                    ) : null}
+                  </span>
                 </LocaleNavLink>
               </li>
             ))}
