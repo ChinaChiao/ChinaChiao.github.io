@@ -11,9 +11,9 @@ export const site = {
   heroEn:
     'I build small, real product experiments for how AI changes everyday life.',
   intro:
-    '从 2024 年起持续使用 AI 完成交互原型、数据分析和应用落地。不是为了证明会写代码，而是把生活里的具体问题做成可体验的实验，并观察 AI 如何从助手拓展到业务与日常。',
+    '从 2024 年起，我持续用 AI 做交互原型、数据分析和应用落地。在意的不是写代码这件事，而是把生活里的具体问题做成可体验的实验，看 AI 如何从助手一路长进业务与日常。',
   thesis:
-    '一位具有先锋审美、善于尝试新技术，并把生活观察转化为产品实验的 AI-native 创作者。',
+    '先锋审美，喜欢试新技术，习惯把生活观察做成产品实验的 AI-native 创作者。',
   contact: {
     email: '',
     github: '',

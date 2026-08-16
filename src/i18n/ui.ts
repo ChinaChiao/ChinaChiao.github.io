@@ -26,25 +26,25 @@ export const ui = {
     observeKicker: 'AI 影响观察',
     observeTitle: 'AI 正在改写任务如何开始、判断如何形成、产品如何被使用。',
     observeLead:
-      '这不是一条“编码更快”的效率曲线。四阶段时间轴描述的是能力如何从助手，长成共创、业务层，再铺进日常基础设施。',
+      '能力从助手长成共创，铺进业务层，再沉进日常基础设施。编码速度只是其中一角。',
     notesKicker: '精选产品笔记',
     notesTitle: '先读主张，再看实验。',
     notesIndex: '进入笔记索引',
     notesPageTitle: '产品笔记',
     notesPageEn: 'Product notes on judgment, life, and form.',
     notesPageLead:
-      '这里写的不是教程合集，而是把生活观察压成可讨论的主张。先问题，再主题，再时间。',
+      '把生活里的观察压成可以讨论的主张。先看问题，再看主题和时间。',
     notesPinned: '置顶',
     notesRead: '阅读',
     notesBack: '← 返回笔记索引',
     archiveKicker: '实验档案',
     archiveTitle: '四个现场，一种观察方式。',
     archiveLead:
-      'AI 伴侣只是其中一个案例。数据、游戏与传播共同构成视角。点进档案，里面有一个可把玩的现场。网络安全不单独陈列，它作为工程底座写在方法里。',
+      'AI 伴侣只是其中一个案例。数据、游戏与传播共同构成视角。点进档案，可以把规则按下去。网络安全不单独陈列，它作为工程底座写在方法里。',
     archiveLink: '打开完整档案',
     archivePageEn: 'Four fields. One way of watching.',
     archivePageLead:
-      '每个实验都来自生活里的具体摩擦。点开一份档案，里面有一个可把玩的现场——不是展览标签，是把规则按下去。AI Companion 是观察案例之一，不是身份的全部。',
+      '每个实验都来自生活里的具体摩擦。点开一份档案，把规则按下去——不是看展览标签。AI Companion 是观察案例之一，不是身份的全部。',
     methodKicker: '产品方法',
     methodTitle: '方法是立场，不是流程海报。',
     signalsKicker: '个人信号与联系',
@@ -61,11 +61,11 @@ export const ui = {
     aboutMethod: '方法',
     aboutContact: '联系',
     aboutP1:
-      '我不是来证明“我会写代码”。从 2024 年起，我持续用 AI 把生活里的具体摩擦做成可体验的产品实验：交互原型、数据分析、应用落地。AI 伴侣只是其中一个观察案例。真正要看的，是 AI 如何从助手拓展成共创、业务层，再变成日常生活的基础设施。',
+      '从 2024 年起，我持续用 AI 把生活里的具体摩擦做成可体验的产品实验：交互原型、数据分析、应用落地。AI 伴侣只是其中一个观察案例。我真正想看清的，是 AI 如何从助手拓展成共创、业务层，再变成日常生活的基础设施。',
     aboutP2:
-      '这个站点面向同行开发者、HR 与潜在合作者。我希望三秒能被记住形式，三十秒能被说清立场：先锋审美，愿意试新技术，并把生活观察转化成产品实验。',
+      '写给同行开发者、HR 与潜在合作者：三秒记住形式，三十秒说清立场——先锋审美，愿意试新技术，把生活观察做成产品实验。',
     aboutBaseP:
-      '网络安全不单独包装成对外项目。它是默认的工程底座：边界、滥用、权限、失败模式。做伴侣、做数据透镜、做会传播的产品时，这套训练决定哪些东西不能被生成出来就算完成。',
+      '网络安全是我的默认工程底座：边界、滥用、权限、失败模式。做伴侣、做数据透镜、做会传播的产品时，这套训练决定哪些东西不能被生成出来就算完成。',
     expObserve: '现场观察',
     expMethod: '方法备注',
     expBack: '← 返回实验档案',
@@ -120,7 +120,7 @@ export const ui = {
     navAria: 'Primary',
     indexOpen: 'Index',
     indexClose: 'Close',
-    indexKicker: 'Field Index / 场域索引',
+    indexKicker: 'Field Index',
     langAria: 'Language',
     nav: {
       home: 'Index',
@@ -140,25 +140,25 @@ export const ui = {
     observeTitle:
       'AI is rewriting how a task starts, how a judgment forms, and how a product is used.',
     observeLead:
-      'This is not an “I code faster” curve. The four stages describe capability growing from assistant into co-creation, a business layer, then everyday infrastructure.',
+      'Capability grows from assistant into co-creation, a business layer, then everyday infrastructure. Coding speed covers one corner of it.',
     notesKicker: 'Selected notes',
     notesTitle: 'Read the claim first, then the experiment.',
     notesIndex: 'Open the note index',
     notesPageTitle: 'Product notes',
     notesPageEn: 'Product notes on judgment, life, and form.',
     notesPageLead:
-      'Not a tutorial pile. Life observations pressed into claims you can argue with. Question, then theme, then date.',
+      'Life observations pressed into claims worth arguing about. Question first, then theme, then date.',
     notesPinned: 'Pinned',
     notesRead: 'Read',
     notesBack: '← Back to notes',
     archiveKicker: 'Archive',
     archiveTitle: 'Four fields. One way of watching.',
     archiveLead:
-      'The AI companion is one case, not the whole story. Data, play, and media complete the view. Open a file and there is a bench you can press. Cybersecurity is not exhibited on its own; it sits in the method as the engineering base.',
+      'The AI companion is one case, not the whole story. Data, play, and media complete the view. Open a file and press the rules yourself. Cybersecurity is not exhibited on its own; it sits in the method as the engineering base.',
     archiveLink: 'Open the full archive',
     archivePageEn: 'Four fields. One way of watching.',
     archivePageLead:
-      'Each experiment starts from a concrete friction in life. Open a file: there is a bench you can press — not a label on a wall, a rule you push down. AI Companion is one case, not the whole identity.',
+      'Each experiment starts from a concrete friction in life. Open a file and press the rules down — not a label on a wall. AI Companion is one case, not the whole identity.',
     methodKicker: 'Method',
     methodTitle: 'Method is a stance, not a process poster.',
     signalsKicker: 'Signals and contact',
@@ -175,11 +175,11 @@ export const ui = {
     aboutMethod: 'Method',
     aboutContact: 'Contact',
     aboutP1:
-      'I am not here to prove that I can write code. Since 2024 I have used AI to turn concrete frictions in life into experiments you can use: interaction prototypes, data analysis, working apps. The AI companion is one case. What matters is how AI grows from assistant into co-creation, a business layer, then the infrastructure of everyday life.',
+      'Since 2024 I have used AI to turn concrete frictions in life into experiments you can use: interaction prototypes, data analysis, working apps. The AI companion is one case. What I want to see clearly is how AI grows from assistant into co-creation, a business layer, then the infrastructure of everyday life.',
     aboutP2:
-      'This site is for fellow builders, hiring partners, and possible collaborators. I want the form to be remembered in three seconds, and the stance to be sayable in thirty: avant-garde taste, a willingness to try new tools, and a habit of turning life observation into product experiments.',
+      'Written for fellow builders, hiring partners, and possible collaborators: remember the form in three seconds, hear the stance in thirty — avant-garde taste, a willingness to try new tools, and a habit of turning life observation into product experiments.',
     aboutBaseP:
-      'Cybersecurity is not packaged as a separate showcase. It is the default engineering base: boundaries, abuse, permissions, failure modes. When I make a companion, a data lens, or something that spreads, that training decides what cannot count as done just because it was generated.',
+      'Cybersecurity is my default engineering base: boundaries, abuse, permissions, failure modes. When I make a companion, a data lens, or something that spreads, that training decides what cannot count as done just because it was generated.',
     expObserve: 'Field notes',
     expMethod: 'Method note',
     expBack: '← Back to the archive',

@@ -37,15 +37,15 @@ export function About() {
             {siteCopy.education.map((item) => (
               <li key={item.schoolEn}>
                 <strong>
-                  {locale === 'en'
-                    ? `${item.schoolEn} / ${item.programEn}`
-                    : `${item.school} / ${item.program}`}
+                  {locale === 'zh'
+                    ? `${item.school} / ${item.program}`
+                    : `${item.schoolEn} / ${item.programEn}`}
                 </strong>
-                <span>
-                  {locale === 'en'
-                    ? `${item.school} · ${item.program}`
-                    : `${item.schoolEn} · ${item.programEn}`}
-                </span>
+                {locale === 'zh' ? (
+                  <span>
+                    {item.schoolEn} · {item.programEn}
+                  </span>
+                ) : null}
                 <span>{item.place}</span>
               </li>
             ))}
@@ -66,7 +66,7 @@ export function About() {
                 <div>
                   <h3>
                     {item.title}
-                    <small>{item.titleZh}</small>
+                    {locale === 'zh' ? <small>{item.titleZh}</small> : null}
                   </h3>
                   <p>{item.body}</p>
                 </div>

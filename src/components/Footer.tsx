@@ -1,10 +1,11 @@
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
-import { useSiteCopy, useT } from '../i18n/useLocale'
+import { useLocale, useSiteCopy, useT } from '../i18n/useLocale'
 import { visibleContacts } from '../data/site'
 import { LocaleLink } from './LocaleLink'
 
 export function Footer() {
   const t = useT()
+  const locale = useLocale()
   const siteCopy = useSiteCopy()
   const contacts = visibleContacts(siteCopy.contact)
   const reduced = usePrefersReducedMotion()
@@ -16,7 +17,9 @@ export function Footer() {
       >
         <div>
           <p className="site-footer__brand">
-            {siteCopy.nameZh} / {siteCopy.nameEn}
+            {locale === 'zh'
+              ? `${siteCopy.nameZh} / ${siteCopy.nameEn}`
+              : siteCopy.nameEn}
           </p>
           <p className="site-footer__role">{siteCopy.role}</p>
         </div>

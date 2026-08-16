@@ -26,13 +26,13 @@ export function Signals() {
                 <dd>
                   <strong>{locale === 'en' ? item.schoolEn : item.school}</strong>
                   <span>
-                    {locale === 'en'
-                      ? `${item.programEn} / ${item.program}`
-                      : `${item.program} / ${item.programEn}`}
+                    {locale === 'en' ? item.programEn : item.program}
                   </span>
-                  <span className="index-list__en">
-                    {locale === 'en' ? item.school : item.schoolEn}
-                  </span>
+                  {locale === 'zh' ? (
+                    <span className="index-list__en">
+                      {item.schoolEn} · {item.programEn}
+                    </span>
+                  ) : null}
                 </dd>
               </div>
             ))}

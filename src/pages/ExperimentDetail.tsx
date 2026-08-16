@@ -25,7 +25,9 @@ export function ExperimentDetail() {
               {item.code}
             </p>
             <h1 className="subhero__title">{item.title}</h1>
-            <p className="subhero__en">{item.titleEn}</p>
+            {locale === 'zh' ? (
+              <p className="subhero__en">{item.titleEn}</p>
+            ) : null}
             <p className="section-lead">{item.summary}</p>
             <div className="article__meta">
               <span>{item.status}</span>

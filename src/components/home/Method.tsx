@@ -1,7 +1,8 @@
-import { useMethod, useT } from '../../i18n/useLocale'
+import { useLocale, useMethod, useT } from '../../i18n/useLocale'
 import { SectionKicker } from '../Marks'
 
 export function Method() {
+  const locale = useLocale()
   const t = useT()
   const list = useMethod()
 
@@ -19,7 +20,7 @@ export function Method() {
               <div>
                 <h3>
                   {item.title}
-                  <small>{item.titleZh}</small>
+                  {locale === 'zh' ? <small>{item.titleZh}</small> : null}
                 </h3>
                 <p>{item.body}</p>
               </div>

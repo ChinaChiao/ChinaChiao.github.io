@@ -7,7 +7,6 @@ export function Hero() {
   const t = useT()
   const siteCopy = useSiteCopy()
   const primary = locale === 'en' ? siteCopy.heroEn : siteCopy.heroZh
-  const secondary = locale === 'en' ? siteCopy.heroZh : siteCopy.heroEn
 
   return (
     <section className="hero" aria-labelledby="hero-title">
@@ -28,7 +27,9 @@ export function Hero() {
           >
             {primary}
           </h1>
-          <p className="hero__en">{secondary}</p>
+          {locale === 'zh' ? (
+            <p className="hero__en">{siteCopy.heroEn}</p>
+          ) : null}
           <p className="hero__intro">{siteCopy.intro}</p>
           <div className="hero__actions">
             <Button to="/notes">{t.heroCtaNotes}</Button>

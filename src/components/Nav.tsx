@@ -57,7 +57,9 @@ export function Nav() {
       <div className="masthead__bar">
         <LocaleLink className="brand" to="/" aria-label={t.brandHome}>
           <span className="brand__mark" aria-hidden="true" />
-          <span className="brand__zh">{siteCopy.nameZh}</span>
+          {locale === 'zh' ? (
+            <span className="brand__zh">{siteCopy.nameZh}</span>
+          ) : null}
           <span className="brand__en">{siteCopy.nameEn}</span>
         </LocaleLink>
 
@@ -125,7 +127,9 @@ export function Nav() {
                 <LocaleNavLink to={link.to} end={link.to === '/'}>
                   <span className="site-index__num">{link.index}</span>
                   <span className="site-index__zh">{t.nav[link.key]}</span>
-                  <span className="site-index__en">{t.navEn[link.key]}</span>
+                  {locale === 'zh' ? (
+                    <span className="site-index__en">{t.navEn[link.key]}</span>
+                  ) : null}
                 </LocaleNavLink>
               </li>
             ))}

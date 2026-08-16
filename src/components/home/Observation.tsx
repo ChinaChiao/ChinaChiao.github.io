@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react'
-import { useT, useTimeline } from '../../i18n/useLocale'
+import { useLocale, useT, useTimeline } from '../../i18n/useLocale'
 import { SectionKicker } from '../Marks'
 
 export function Observation() {
+  const locale = useLocale()
   const t = useT()
   const stages = useTimeline()
   const [current, setCurrent] = useState(0)
@@ -58,7 +59,7 @@ export function Observation() {
                 <div className="timeline__body">
                   <h3>
                     {stage.title}
-                    <small>{stage.titleEn}</small>
+                    {locale === 'zh' ? <small>{stage.titleEn}</small> : null}
                   </h3>
                   <p>{stage.body}</p>
                 </div>

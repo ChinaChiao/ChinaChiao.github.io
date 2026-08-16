@@ -4,7 +4,7 @@ import { site } from '../data/site'
 export const siteEn = {
   ...site,
   intro:
-    'Since 2024 I have used AI to ship interaction prototypes, data analysis, and working apps. The point is not to prove I can code. It is to turn concrete problems in daily life into experiments you can use, and to watch AI move from assistant into business and the everyday.',
+    'Since 2024 I have used AI to ship interaction prototypes, data analysis, and working apps. What I care about is not coding itself, but turning concrete problems in daily life into experiments you can use, and watching AI grow from assistant into business and the everyday.',
   thesis:
     'An AI-native maker with avant-garde taste, a habit of trying new tools, and a practice of turning life observations into product experiments.',
   focus: [
