@@ -2,7 +2,7 @@
 
 先锋结构主义个人站点。TypeScript + React + Vite。
 
-线上地址：https://chinachiao.github.io/field/
+线上地址：https://chinachiao.github.io/
 
 ```bash
 npm install
